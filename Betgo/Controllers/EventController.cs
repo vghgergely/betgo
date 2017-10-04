@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Betgo.Models;
@@ -29,16 +30,24 @@ namespace Betgo.Controllers
         [HttpPost]
         public ActionResult Create(EventViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Types = _context.EventTypes.ToList();
+                return View("Create", viewModel);
+            }
+            
             Random rnd = new Random();
             double randomOne = rnd.NextDouble();
+            var dt = DateTime.Parse(viewModel.DateTime);
             var type = _context.EventTypes.Single(t => t.Id == viewModel.Type);
             var newevent = new Event
             {
                 CompetitorA = viewModel.CompA,
                 CompetitorB = viewModel.CompB,
                 Name = viewModel.Name,
-                Date = viewModel.DateTime.Date,
-                Time = DateTime.Parse(viewModel.DateTime.Hour + ":" + viewModel.DateTime.Minute),
+                ActualDateTime = dt,
+                Date = dt.ToShortDateString(),
+                Time = dt.ToShortTimeString(),
                 OddsA = randomOne,
                 OddsB = 1 - randomOne,
                 Type = type,

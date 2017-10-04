@@ -19,9 +19,14 @@ namespace Betgo.Models
         [Required]
         [StringLength(128)]
         public string Name { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime Time { get; set; }
+
+        [Required]
+        public DateTime ActualDateTime { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
+        [Required]
         public string CompetitorA { get; set; }
+        [Required]
         public string CompetitorB { get; set; }
         [Range(0,1)]
         public double OddsA { get; set; }
