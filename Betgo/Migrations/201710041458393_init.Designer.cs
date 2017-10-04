@@ -7,13 +7,13 @@ namespace Betgo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CreateGigsBetsEvents : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateGigsBetsEvents));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710041210468_CreateGigsBetsEvents"; }
+            get { return "201710041458393_init"; }
         }
         
         string IMigrationMetadata.Source

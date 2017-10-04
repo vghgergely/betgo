@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Betgo.Models;
 using Betgo.ViewModels;
@@ -7,13 +8,22 @@ namespace Betgo.Controllers
 {
     public class EventController : Controller
     {
-        ApplicationDbContext _context = new ApplicationDbContext();
+        private ApplicationDbContext _context;
+
+        public EventController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         [HttpGet]
         public ActionResult Create()
         {
-            
+            var viewModel = new EventViewModel
+            {
+                Types = _context.EventTypes.ToList()
+            };
 
-            return View();
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -21,21 +31,23 @@ namespace Betgo.Controllers
         {
             Random rnd = new Random();
             double randomOne = rnd.NextDouble();
+            var type = _context.EventTypes.Single(t => t.Id == viewModel.Type);
             var newevent = new Event
             {
                 CompetitorA = viewModel.CompA,
                 CompetitorB = viewModel.CompB,
                 Name = viewModel.Name,
                 Date = viewModel.DateTime.Date,
-                //Time = DateTime.Parse(viewModel.DateTime.Hour + ":" + viewModel.DateTime.Minute),
-                Time = DateTime.Parse("10:00"),
-                OddsA = 0.4,
-                OddsB = 0.6,
-                Type = "meme"
+                Time = DateTime.Parse(viewModel.DateTime.Hour + ":" + viewModel.DateTime.Minute),
+                OddsA = randomOne,
+                OddsB = 1 - randomOne,
+                Type = type,
+                AWinsReturn = (1-randomOne) / randomOne + 1
             };
             _context.Events.Add(newevent);
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
-;        }
+            ;
+        }
     }
 }

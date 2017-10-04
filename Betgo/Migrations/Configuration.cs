@@ -1,3 +1,5 @@
+using Betgo.Models;
+
 namespace Betgo.Migrations
 {
     using System;
@@ -14,18 +16,12 @@ namespace Betgo.Migrations
 
         protected override void Seed(Betgo.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            context.EventTypes.AddOrUpdate(t => t.Name,
+                new EventType {Name = "Soccer"},
+                new EventType {Name = "Fencing"},
+                new EventType {Name = "MMA"},
+                new EventType {Name = "Judo"});
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
         }
     }
 }
