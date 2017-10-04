@@ -10,17 +10,20 @@ namespace Betgo.Models
     {
         public Event()
         {
-            AWinsReturn = CompetitorB.Odds / CompetitorA.Odds + 1;
+            //AWinsReturn = CompetitorB.Odds / CompetitorA.Odds + 1;
+            AWinsReturn = OddsB / OddsA + 1;
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public DateTime Time { get; set; }
-        public Competitor CompetitorA { get; set; }
-        public Competitor CompetitorB { get; set; }
-        public double AWinsReturn { get; set; }
-        public List<Bet> Bets { get; set; }
-        public EventType Type { get; set; }
+        public string CompetitorA { get; set; }
+        public string CompetitorB { get; set; }
+        public double OddsA { get; set; }
+        public double OddsB { get; set; }
+
+        public double AWinsReturn { get; private set; }
+        public string Type { get; set; }
     }
 }
