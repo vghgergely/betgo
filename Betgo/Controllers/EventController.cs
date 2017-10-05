@@ -17,6 +17,7 @@ namespace Betgo.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             var viewModel = new EventViewModel
@@ -28,6 +29,7 @@ namespace Betgo.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult Create(EventViewModel viewModel)
         {
