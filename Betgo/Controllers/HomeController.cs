@@ -15,6 +15,8 @@ namespace Betgo.Controllers
         {
             var upcomingEvents = _context.Events
                 .Include(e => e.Type)
+                .Include(e => e.CompetitorA)
+                .Include(e => e.CompetitorB)
                 .Where(g => g.ActualDateTime > DateTime.Now);
 
             return View(upcomingEvents);
