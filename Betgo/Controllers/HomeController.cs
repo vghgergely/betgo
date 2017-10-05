@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Betgo.Models;
+using System.Data.Entity;
 
 namespace Betgo.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext _context = new ApplicationDbContext();
         public ActionResult Index()
         {
-            return View();
+            var upcomingEvents = _context.Events
+                .Include(e => e.Type)
+                .Where(g => g.ActualDateTime > DateTime.Now);
+
+            return View(upcomingEvents);
         }
 
         public ActionResult About()
