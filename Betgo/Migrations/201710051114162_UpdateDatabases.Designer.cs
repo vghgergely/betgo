@@ -7,13 +7,13 @@ namespace Betgo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RefactoringDateTime : IMigrationMetadata
+    public sealed partial class UpdateDatabases : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RefactoringDateTime));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateDatabases));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710041536033_RefactoringDateTime"; }
+            get { return "201710051114162_UpdateDatabases"; }
         }
         
         string IMigrationMetadata.Source

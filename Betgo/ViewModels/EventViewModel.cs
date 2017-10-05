@@ -15,11 +15,12 @@ namespace Betgo.ViewModels
         [Required]
         public string DateTime { get; set; }
         [Required]
-        public string CompA { get; set; }
+        public int CompA { get; set; }
         [Required]
-        public string CompB { get; set; }
+        public int CompB { get; set; }
         [Required]
         public int Type { get; set; }
         public IEnumerable<EventType> Types { get; set; }
+        public IEnumerable<Competitor> Competitors { get; set; }
     }
 }

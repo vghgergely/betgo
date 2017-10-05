@@ -3,7 +3,7 @@ namespace Betgo.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class ResetCompetitorsTable : DbMigration
     {
         public override void Up()
         {
@@ -15,10 +15,10 @@ namespace Betgo.Migrations
                         EventId = c.Int(nullable: false),
                         Amount = c.Double(nullable: false),
                         ReturnAmount = c.Double(nullable: false),
-                        Better_Id = c.String(maxLength: 128),
+                        Better_Id = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.Better_Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.Better_Id, cascadeDelete: true)
                 .Index(t => t.Better_Id);
             
             CreateTable(
@@ -80,22 +80,16 @@ namespace Betgo.Migrations
                 .Index(t => t.RoleId);
             
             CreateTable(
-                "dbo.Events",
+                "dbo.Competitors",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 128),
-                        Date = c.DateTime(nullable: false),
-                        Time = c.DateTime(nullable: false),
-                        CompetitorA = c.String(),
-                        CompetitorB = c.String(),
-                        OddsA = c.Double(nullable: false),
-                        OddsB = c.Double(nullable: false),
-                        AWinsReturn = c.Double(nullable: false),
-                        Type_Id = c.Int(),
+                        Name = c.String(nullable: false),
+                        Odds = c.Double(nullable: false),
+                        Type_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.EventTypes", t => t.Type_Id)
+                .ForeignKey("dbo.EventTypes", t => t.Type_Id, cascadeDelete: true)
                 .Index(t => t.Type_Id);
             
             CreateTable(
@@ -106,6 +100,26 @@ namespace Betgo.Migrations
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Events",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 128),
+                        ActualDateTime = c.DateTime(nullable: false),
+                        Date = c.String(),
+                        Time = c.String(),
+                        CompetitorA = c.String(nullable: false),
+                        CompetitorB = c.String(nullable: false),
+                        OddsA = c.Double(nullable: false),
+                        OddsB = c.Double(nullable: false),
+                        AWinsReturn = c.Double(nullable: false),
+                        Type_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.EventTypes", t => t.Type_Id)
+                .Index(t => t.Type_Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -123,12 +137,14 @@ namespace Betgo.Migrations
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Events", "Type_Id", "dbo.EventTypes");
+            DropForeignKey("dbo.Competitors", "Type_Id", "dbo.EventTypes");
             DropForeignKey("dbo.Bets", "Better_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Events", new[] { "Type_Id" });
+            DropIndex("dbo.Competitors", new[] { "Type_Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -136,8 +152,9 @@ namespace Betgo.Migrations
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Bets", new[] { "Better_Id" });
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.EventTypes");
             DropTable("dbo.Events");
+            DropTable("dbo.EventTypes");
+            DropTable("dbo.Competitors");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");

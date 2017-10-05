@@ -25,12 +25,12 @@ namespace Betgo.Models
         public string Date { get; set; }
         public string Time { get; set; }
         [Required]
-        public string CompetitorA { get; set; }
+        public Competitor CompetitorA { get; set; }
         [Required]
-        public string CompetitorB { get; set; }
-        [Range(0,1)]
+        public Competitor CompetitorB { get; set; }
+        
         public double OddsA { get; set; }
-        [Range(0,1)]
+        
         public double OddsB { get; set; }
 
         public double AWinsReturn { get;  set; }

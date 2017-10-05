@@ -21,7 +21,8 @@ namespace Betgo.Controllers
         {
             var viewModel = new EventViewModel
             {
-                Types = _context.EventTypes.ToList()
+                Types = _context.EventTypes.ToList(),
+                Competitors = _context.Competitors.ToList()
             };
 
             return View(viewModel);
@@ -32,6 +33,7 @@ namespace Betgo.Controllers
         {
             if (!ModelState.IsValid)
             {
+                viewModel.Competitors = _context.Competitors.ToList();
                 viewModel.Types = _context.EventTypes.ToList();
                 return View("Create", viewModel);
             }
@@ -40,18 +42,20 @@ namespace Betgo.Controllers
             double randomOne = rnd.NextDouble();
             var dt = DateTime.Parse(viewModel.DateTime);
             var type = _context.EventTypes.Single(t => t.Id == viewModel.Type);
+            var compA = _context.Competitors.Single(c => c.Id == viewModel.CompA);
+            var compB = _context.Competitors.Single(c => c.Id == viewModel.CompB);
             var newevent = new Event
             {
-                CompetitorA = viewModel.CompA,
-                CompetitorB = viewModel.CompB,
+                CompetitorA = compA,
+                CompetitorB = compB,
                 Name = viewModel.Name,
                 ActualDateTime = dt,
                 Date = dt.ToShortDateString(),
                 Time = dt.ToShortTimeString(),
-                OddsA = randomOne,
-                OddsB = 1 - randomOne,
+                OddsA = compA.Odds,
+                OddsB = compB.Odds,
                 Type = type,
-                AWinsReturn = (1-randomOne) / randomOne + 1
+                AWinsReturn = compB.Odds / compA.Odds + 1
             };
             _context.Events.Add(newevent);
             _context.SaveChanges();

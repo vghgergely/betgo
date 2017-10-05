@@ -7,13 +7,13 @@ namespace Betgo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddDataAnnotations : IMigrationMetadata
+    public sealed partial class PopulateTables1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddDataAnnotations));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateTables1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710041553266_AddDataAnnotations"; }
+            get { return "201710051105468_PopulateTables1"; }
         }
         
         string IMigrationMetadata.Source
