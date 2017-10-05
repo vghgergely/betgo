@@ -28,9 +28,9 @@ namespace Betgo.Models
         public string CompetitorA { get; set; }
         [Required]
         public string CompetitorB { get; set; }
-        [Range(0,1)]
+        [Required]
         public double OddsA { get; set; }
-        [Range(0,1)]
+        [Required]
         public double OddsB { get; set; }
 
         public double AWinsReturn { get;  set; }

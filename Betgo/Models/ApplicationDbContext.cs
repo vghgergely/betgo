@@ -8,6 +8,7 @@ namespace Betgo.Models
         public DbSet<Event> Events { get; set; }
         public DbSet<Bet> Bets { get; set; }
         public DbSet<EventType> EventTypes { get; set; }
+        public DbSet<Competitor> Competitors { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
