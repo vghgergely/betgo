@@ -12,5 +12,7 @@ namespace Betgo.Models
         public double Odds { get; set; }
         [Required]
         public EventType Type { get; set; }
+
+        public string Details { get; set; }
     }
 }

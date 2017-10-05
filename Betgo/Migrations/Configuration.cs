@@ -29,6 +29,10 @@ namespace Betgo.Migrations
                 new Competitor { Name = "Ohmy God", Odds = 0.2, Type = context.EventTypes.Find(4) },
                 new Competitor { Name = "Hingle McCringleberry", Odds = 4.0, Type = context.EventTypes.Find(2) }
                 );
+
+       
         }
+
+       
     }
 }
