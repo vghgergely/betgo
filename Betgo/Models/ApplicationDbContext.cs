@@ -18,5 +18,13 @@ namespace Betgo.Models
         {
             return new ApplicationDbContext();
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+           // modelBuilder.Entity<Event>().HasMany(e => e.Competitor).WithRequired().WillCascadeOnDelete(false);
+
+            
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

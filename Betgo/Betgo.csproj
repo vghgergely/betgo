@@ -186,6 +186,10 @@
     <Compile Include="Migrations\201710051105468_PopulateTables1.Designer.cs">
       <DependentUpon>201710051105468_PopulateTables1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710051114162_UpdateDatabases.cs" />
+    <Compile Include="Migrations\201710051114162_UpdateDatabases.Designer.cs">
+      <DependentUpon>201710051114162_UpdateDatabases.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -278,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710051105468_PopulateTables1.resx">
       <DependentUpon>201710051105468_PopulateTables1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710051114162_UpdateDatabases.resx">
+      <DependentUpon>201710051114162_UpdateDatabases.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
