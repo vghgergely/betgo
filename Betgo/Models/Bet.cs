@@ -6,13 +6,13 @@ namespace Betgo.Models
     {
         public int Id { get; set; }
         [Required]
-        public ApplicationUser Better { get; set; }
+        public string UserId { get; set; }
         [Required]
         public int EventId { get; set; }
         [Required]
-        public char ChosenOption { get; set; }
+        public bool ChosenOption { get; set; }
         [Required]
         public double Amount { get; set; }
-        public double ReturnAmount { get; private set; }
+        public double ReturnAmount { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Betgo.Models;
 using Betgo.ViewModels;
+using System.Data.Entity;
 
 namespace Betgo.Controllers
 {
@@ -57,12 +58,23 @@ namespace Betgo.Controllers
                 OddsA = compA.Odds,
                 OddsB = compB.Odds,
                 Type = type,
-                AWinsReturn = compB.Odds / compA.Odds + 1
+                AWinsReturn = compB.Odds / compA.Odds + 1,
+                BWinsReturn = compA.Odds / compB.Odds + 1
+
             };
             _context.Events.Add(newevent);
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
             ;
+        }
+
+        public ActionResult Details(int eventId)
+        {
+            var events = _context.Events
+                .Include(e => e.CompetitorA)
+                .Include(e => e.CompetitorB)
+                .Single(e => e.Id == eventId);
+            return View(new DetailsViewModel(events));
         }
     }
 }

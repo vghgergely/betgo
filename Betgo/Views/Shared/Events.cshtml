@@ -11,7 +11,7 @@
         <div class="time">@events.Time</div>
         <div class="type">@events.Type.Name</div>
         
-        @Html.ActionLink("Place a bet","PlaceBet","Bets",Model)
+        @Html.ActionLink("Details", "Details", "Event", new { eventId = events.Id},null)
         <hr />
         <hr />
     </li>

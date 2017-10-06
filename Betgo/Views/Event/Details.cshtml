@@ -1,0 +1,105 @@
+﻿@model Betgo.ViewModels.DetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    
+    <dl class="dl-horizontal">
+        @*<h4>@ViewBag.Message</h4>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OddsA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OddsA)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.CompB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OddsB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OddsB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AWinsReturn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AWinsReturn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BWinsReturn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BWinsReturn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+
+    </dl>
+</div>
+@Html.Partial("_BetPartial", @Model.betViewModel)
+
+
+<p>
+    @*@if(User.IsInRole("Administrator"))
+    //TODO: EDIT CUCCOK*@
+    @Html.ActionLink("Back to List", "Index", "Home")
+</p>

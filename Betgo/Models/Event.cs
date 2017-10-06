@@ -34,6 +34,7 @@ namespace Betgo.Models
         public double OddsB { get; set; }
 
         public double AWinsReturn { get;  set; }
+        public double BWinsReturn { get; set; }
         public EventType Type { get; set; }
 
         public string Details { get; set; }
