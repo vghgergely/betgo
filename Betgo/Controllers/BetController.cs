@@ -73,7 +73,11 @@ namespace Betgo.Controllers
         public ActionResult Edit(int betId)
         {
             var bet = _context.Bets.Single(b => b.Id == betId);
-            return View(bet);
+            var events = _context.Events
+                .Include(e => e.CompetitorA)
+                .Include(e => e.CompetitorB)
+                .Single(e => e.Id == bet.EventId);
+            return View(new BetDetailsViewModel(events,bet));
         }
 
         [HttpPost]
