@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Betgo.Models;
 using Betgo.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 
 namespace Betgo.Controllers
 {
@@ -51,6 +52,21 @@ namespace Betgo.Controllers
             return RedirectToAction("Details", "Event", new {eventId = events.Id});
         }
 
-        
+        public ActionResult MyBets()
+        {
+            var userId = User.Identity.GetUserId();
+            var bets = _context.Bets.Where(b => b.UserId == userId);
+            var viewModels = new List<BetDetailsViewModel>();
+            foreach (var bet in bets)
+            {
+                
+                viewModels.Add(new BetDetailsViewModel(_context.Events
+                    .Include(e => e.CompetitorA)
+                    .Include(e => e.CompetitorB)
+                    .Single(e => e.Id == bet.EventId), bet));
+
+            }
+            return View(viewModels);
+        }
     }
 }

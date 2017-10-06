@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Betgo.ViewModels.BetDetailsViewModel>
+@{
+    ViewBag.Title = "My bets";
+}
+
+<h2>My bets</h2>
+
+
+
+<ul>
+    @foreach (var viewModel in Model)
+    {
+        <li>
+            <div class="name">@viewModel.Event.Name</div>
+            <div class="competitor">@viewModel.Event.CompetitorA.Name</div>
+            <div class="competitor">@viewModel.Event.CompetitorB.Name</div>
+            <div class="choice">Your choice: @(viewModel.Bet.ChosenOption == false ? @viewModel.Event.CompetitorA.Name : viewModel.Event.CompetitorB.Name)</div>
+            <div class="date">@viewModel.Event.Date</div>
+            <div class="time">@viewModel.Event.Time</div>
+            <div class="amount">@viewModel.Bet.Amount</div>
+        
+            @Html.ActionLink("Details", "Details", "Event", new { eventId = viewModel.Event.Id},null)
+            <hr />
+            <hr />
+        </li>
+    }
+</ul>
+
