@@ -10,7 +10,10 @@
         <div class="date">@events.Date</div>
         <div class="time">@events.Time</div>
         <div class="type">@events.Type.Name</div>
-        <hr/>
+        
+        @Html.ActionLink("Details", "Details", "Event", new { eventId = events.Id},null)
+        <hr />
+        <hr />
     </li>
     }
 </ul>
