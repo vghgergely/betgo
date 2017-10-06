@@ -68,5 +68,44 @@ namespace Betgo.Controllers
             }
             return View(viewModels);
         }
+
+        [HttpGet]
+        public ActionResult Edit(int betId)
+        {
+            var bet = _context.Bets.Single(b => b.Id == betId);
+            return View(bet);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Bet bet)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.Single(u => u.Id == userId);
+            var newBet = _context.Bets.Single(b => b.Id == bet.Id);
+            user.Money += newBet.Amount;
+            if (user.Money < bet.Amount)
+            {
+                //TODO: ALERT IF INSUFF FUNDS
+                return View(bet);
+            }
+
+            newBet.Amount = bet.Amount;
+            newBet.ChosenOption = bet.ChosenOption;
+            if (bet.ChosenOption == false) newBet.ReturnAmount = _context.Events.Single(e => e.Id == bet.EventId).AWinsReturn * bet.Amount;
+            else newBet.ReturnAmount = _context.Events.Single(e => e.Id == bet.EventId).BWinsReturn * bet.Amount;
+            _context.SaveChanges();
+            return RedirectToAction("MyBets", "Bet");
+        }
+
+        public ActionResult Remove(int betid)
+        {
+            var userId = User.Identity.GetUserId();
+            var bet = _context.Bets.Single(b => b.Id == betid);
+            _context.Users.Single(u => u.Id == userId).Money += bet.Amount;
+            _context.Bets.Remove(bet);
+            _context.SaveChanges();
+
+            return RedirectToAction("MyBets", "Bet");
+        }
     }
 }

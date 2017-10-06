@@ -305,6 +305,7 @@
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Shared\_BetPartial.cshtml" />
     <Content Include="Views\Bet\MyBets.cshtml" />
+    <Content Include="Views\Bet\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
