@@ -205,6 +205,14 @@
     <Compile Include="Migrations\201710060920577_UpdateUser.Designer.cs">
       <DependentUpon>201710060920577_UpdateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710070836312_UpdateEvent.cs" />
+    <Compile Include="Migrations\201710070836312_UpdateEvent.Designer.cs">
+      <DependentUpon>201710070836312_UpdateEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710070933448_SadBoye.cs" />
+    <Compile Include="Migrations\201710070933448_SadBoye.Designer.cs">
+      <DependentUpon>201710070933448_SadBoye.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Extensions\IdentityExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -351,6 +359,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710060920577_UpdateUser.resx">
       <DependentUpon>201710060920577_UpdateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710070836312_UpdateEvent.resx">
+      <DependentUpon>201710070836312_UpdateEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710070933448_SadBoye.resx">
+      <DependentUpon>201710070933448_SadBoye.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

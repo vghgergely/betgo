@@ -14,6 +14,7 @@ namespace Betgo.Controllers
     {
         ApplicationDbContext _context = new ApplicationDbContext();
         // GET: Bet
+        [Authorize]
         public ActionResult Create(int eventId, bool chosenOption, double amount)
         {
             var userId = User.Identity.GetUserId();
@@ -52,6 +53,7 @@ namespace Betgo.Controllers
             return RedirectToAction("Details", "Event", new {eventId = events.Id});
         }
 
+        [Authorize]
         public ActionResult MyBets()
         {
             var userId = User.Identity.GetUserId();
@@ -69,6 +71,7 @@ namespace Betgo.Controllers
             return View(viewModels);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Edit(int betId)
         {
@@ -80,6 +83,7 @@ namespace Betgo.Controllers
             return View(new BetDetailsViewModel(events,bet));
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Bet bet)
         {
@@ -101,6 +105,7 @@ namespace Betgo.Controllers
             return RedirectToAction("MyBets", "Bet");
         }
 
+        [Authorize]
         public ActionResult Remove(int betid)
         {
             var userId = User.Identity.GetUserId();
