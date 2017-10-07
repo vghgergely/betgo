@@ -11,13 +11,16 @@ namespace Betgo.Controllers
     public class HomeController : Controller
     {
         ApplicationDbContext _context = new ApplicationDbContext();
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm = null)
         {
             var upcomingEvents = _context.Events
                 .Include(e => e.Type)
                 .Include(e => e.CompetitorA)
                 .Include(e => e.CompetitorB)
-                .Where(g => g.ActualDateTime > DateTime.Now);
+                .Where(g => g.ActualDateTime > DateTime.Now)
+                .Where(e => searchTerm == null || e.Name.StartsWith(searchTerm))
+                .OrderBy(e => e.ActualDateTime)
+                .Take(10);
 
             return View(upcomingEvents);
         }

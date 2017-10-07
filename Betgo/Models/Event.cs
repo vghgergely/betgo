@@ -24,9 +24,9 @@ namespace Betgo.Models
         public DateTime ActualDateTime { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
-        [Required]
+        //[Required]
         public Competitor CompetitorA { get; set; }
-        [Required]
+        //[Required]
         public Competitor CompetitorB { get; set; }
         
         public double OddsA { get; set; }
@@ -38,5 +38,7 @@ namespace Betgo.Models
         public EventType Type { get; set; }
 
         public string Details { get; set; }
+        public bool PaidOut { get; set; }
+        public bool Winner { get; set; }
     }
 }

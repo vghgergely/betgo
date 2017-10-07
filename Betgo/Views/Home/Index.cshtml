@@ -1,5 +1,32 @@
-﻿@{
+﻿@model IEnumerable<Betgo.Models.Event>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-@Html.Partial("Events")
+<form method="get">
+    <input type="search" name="searchTerm"/>
+    <input type="submit" value="Search by name"/>
+</form>
+
+<ul>
+    @foreach (var events in Model)
+    {
+        <li>
+            <div class="eventName">@events.Name</div>
+            <div class="competitor">@events.CompetitorA.Name</div>
+            <div class="competitor">@events.CompetitorB.Name</div>
+            <div class="date">@events.Date</div>
+            <div class="time">@events.Time</div>
+            <div class="type">@events.Type.Name</div>
+        
+            @Html.ActionLink("Details", "Details", "Event", new { eventId = events.Id},null)
+            @*@if (User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink("Delete event","Delete","Event", new {eventId = events.Id},null)
+        }*@
+            <hr />
+            <hr />
+        </li>
+    }
+</ul>

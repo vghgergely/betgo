@@ -5,6 +5,8 @@ using System.Web.Mvc;
 using Betgo.Models;
 using Betgo.ViewModels;
 using System.Data.Entity;
+using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 
 namespace Betgo.Controllers
 {
@@ -68,6 +70,7 @@ namespace Betgo.Controllers
             ;
         }
 
+        
         public ActionResult Details(int eventId)
         {
             var events = _context.Events
@@ -75,6 +78,51 @@ namespace Betgo.Controllers
                 .Include(e => e.CompetitorB)
                 .Single(e => e.Id == eventId);
             return View(new DetailsViewModel(events));
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Delete(int eventId)
+        {
+            var events = _context.Events.Single(e => e.Id == eventId);
+            _context.Events.Remove(events);
+            var bets = _context.Bets.Where(b => b.EventId == eventId);
+            _context.Bets.RemoveRange(bets);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult CompleteEvents()
+        {
+            var paying = _context.Events
+                .Where(e => e.ActualDateTime < new DateTime(2020,01,01))
+                .Where(e => e.PaidOut == false);
+
+            //TODO: REAL DATETIME AND AUTOMATING THE CHECK OF ELAPSED EVENTS
+
+            foreach (var events in paying)
+            {
+                var bets = _context.Bets.Where(b => b.EventId == events.Id);
+                foreach (var bet in bets)
+                {
+                    var user = _context.Users.Single(u => u.Id == bet.UserId);
+                    if(events.Winner == bet.ChosenOption) user.Money += bet.ReturnAmount;
+                }
+                
+                events.PaidOut = true;
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult AddWinner(int eventId, bool Winner)
+        {
+            _context.Events.Single(e => e.Id == eventId).Winner = Winner;
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", "Event", new {eventId = eventId});
         }
     }
 }

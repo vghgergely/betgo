@@ -205,6 +205,14 @@
     <Compile Include="Migrations\201710060920577_UpdateUser.Designer.cs">
       <DependentUpon>201710060920577_UpdateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710070836312_UpdateEvent.cs" />
+    <Compile Include="Migrations\201710070836312_UpdateEvent.Designer.cs">
+      <DependentUpon>201710070836312_UpdateEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710070933448_SadBoye.cs" />
+    <Compile Include="Migrations\201710070933448_SadBoye.Designer.cs">
+      <DependentUpon>201710070933448_SadBoye.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Extensions\IdentityExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,6 +245,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\BetDetailsViewModel.cs" />
     <Compile Include="ViewModels\CompetitorViewModel.cs" />
     <Compile Include="ViewModels\BetViewModel.cs" />
     <Compile Include="ViewModels\DetailsViewModel.cs" />
@@ -299,14 +308,15 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Event\Create.cshtml" />
-    <Content Include="Views\Shared\Events.cshtml" />
+    <Content Include="Views\Shared\_EventsPartial.cshtml" />
     <Content Include="Views\Competitor\Create.cshtml" />
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Shared\_BetPartial.cshtml" />
+    <Content Include="Views\Bet\MyBets.cshtml" />
+    <Content Include="Views\Bet\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Bet\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -349,6 +359,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710060920577_UpdateUser.resx">
       <DependentUpon>201710060920577_UpdateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710070836312_UpdateEvent.resx">
+      <DependentUpon>201710070836312_UpdateEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710070933448_SadBoye.resx">
+      <DependentUpon>201710070933448_SadBoye.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
