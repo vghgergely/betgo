@@ -246,6 +246,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BetDetailsViewModel.cs" />
+    <Compile Include="ViewModels\CompetitorDetailsViewModel.cs" />
     <Compile Include="ViewModels\CompetitorViewModel.cs" />
     <Compile Include="ViewModels\BetViewModel.cs" />
     <Compile Include="ViewModels\DetailsViewModel.cs" />
@@ -314,6 +315,7 @@
     <Content Include="Views\Shared\_BetPartial.cshtml" />
     <Content Include="Views\Bet\MyBets.cshtml" />
     <Content Include="Views\Bet\Edit.cshtml" />
+    <Content Include="Views\Competitor\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

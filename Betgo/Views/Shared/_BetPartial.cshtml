@@ -14,8 +14,8 @@
         <h2>Who you bet for:</h2>
 
         <ul>
-            @Html.RadioButtonFor(model => model.ChosenOption, Model.ChosenOption) @Model.CompetitorA
-            @Html.RadioButtonFor(model => model.ChosenOption, !Model.ChosenOption) @Model.CompetitorB
+            @Html.RadioButtonFor(model => model.ChosenOption, Model.ChosenOption) @Model.CompetitorA.Name
+            @Html.RadioButtonFor(model => model.ChosenOption, !Model.ChosenOption) @Model.CompetitorB.Name
 
         </ul>
     </div>

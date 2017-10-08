@@ -4,29 +4,30 @@
     ViewBag.Title = "Home Page";
 }
 
-<form method="get">
-    <input type="search" name="searchTerm"/>
-    <input type="submit" value="Search by name"/>
+<form class="navbar-form navbar-left" method="get">
+    <div class="form-group">
+        <input type="search" name="searchTerm" class="form-control" placeholder="Search">
+    </div>
+    <input type="submit" class="btn btn-default" value="Submit"/>
 </form>
-
-<ul>
+<br/>
+<hr/>
+<ul class="list-group">
     @foreach (var events in Model)
     {
-        <li>
+        <li class="list-group-item">
+           
             <div class="eventName">@events.Name</div>
             <div class="competitor">@events.CompetitorA.Name</div>
             <div class="competitor">@events.CompetitorB.Name</div>
             <div class="date">@events.Date</div>
             <div class="time">@events.Time</div>
             <div class="type">@events.Type.Name</div>
-        
-            @Html.ActionLink("Details", "Details", "Event", new { eventId = events.Id},null)
-            @*@if (User.IsInRole("Administrator"))
-        {
-            @Html.ActionLink("Delete event","Delete","Event", new {eventId = events.Id},null)
-        }*@
-            <hr />
-            <hr />
+
+            @Html.ActionLink("Details", "Details", "Event", new {eventId = events.Id}, null)
+            
+
+        <hr/>
         </li>
     }
 </ul>

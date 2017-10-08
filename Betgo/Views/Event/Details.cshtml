@@ -37,11 +37,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CompA)
+            @Html.DisplayNameFor(model => model.CompetitorA.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CompA)
+            @Html.ActionLink(@Model.CompetitorA.Name,"Details","Competitor",new {compId = Model.CompetitorA.Id, eventId = Model.CurrEvent.Id},null)
         </dd>
 
         <dt>
@@ -53,11 +53,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CompB)
+            @Html.DisplayNameFor(model => model.CompetitorB.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CompB)
+            @Html.ActionLink(@Model.CompetitorB.Name, "Details", "Competitor", new { compId = Model.CompetitorB.Id, eventId = Model.CurrEvent.Id }, null)
         </dd>
 
         <dt>

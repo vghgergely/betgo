@@ -12,9 +12,9 @@ namespace Betgo.ViewModels
         [Required]
         public int EventId { get; set; }
         [Required]
-        public string CompetitorA { get; set; }
+        public Competitor CompetitorA { get; set; }
         [Required]
-        public string CompetitorB { get; set; }
+        public Competitor CompetitorB { get; set; }
 
         public bool ChosenOption { get; set; }
         public double AWinsReturn { get; set; }

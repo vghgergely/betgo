@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Betgo.Models;
 using Betgo.ViewModels;
+using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Betgo.Controllers
@@ -46,6 +47,17 @@ namespace Betgo.Controllers
 
             _context.SaveChanges();
             return RedirectToAction("Index","Home");
+        }
+
+        public ActionResult Details(int compId, int eventId)
+        {
+            var comp = _context.Competitors.Single(c => c.Id == compId);
+            var events = _context.Events
+                .Include(e => e.CompetitorA)
+                .Include(e => e.CompetitorB)
+                .Include(e => e.Type)
+                .Where(e => e.CompetitorA.Id == compId || e.CompetitorB.Id == compId);
+            return View("Details", new CompetitorDetailsViewModel {Competitor = comp, Events = events, EventId = eventId});
         }
     }
 }
