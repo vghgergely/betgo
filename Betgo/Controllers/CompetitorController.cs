@@ -40,9 +40,10 @@ namespace Betgo.Controllers
             _context.Competitors.Add(new Competitor
             {
                 Name = viewModel.Name,
-                Odds = viewModel.Odds,
-                Details = viewModel.Details,
-                Type = type
+                Odds = (double)viewModel.Odds,
+                Details = viewModel.Body,
+                Type = type,
+                ImageLink = viewModel.ImageLink
             });
 
             _context.SaveChanges();

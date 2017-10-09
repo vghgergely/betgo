@@ -2,16 +2,11 @@
 
 @using (Html.BeginForm("Create", "Bet", new { eventId = Model.EventId }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <div class="form-group">
-        @Html.LabelFor(m => m.Amount, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
-        </div>
-    </div>
+    
 
     <div class="container">
 
-        <h2>Who you bet for:</h2>
+        <h4>Who you bet for:</h4>
 
         <ul>
             @Html.RadioButtonFor(model => model.ChosenOption, Model.ChosenOption) @Model.CompetitorA.Name
@@ -20,8 +15,14 @@
         </ul>
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.Amount, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Place amount" />
+            <input type="submit" class="btn btn-default" value="Place bet" />
         </div>
     </div>
 }

@@ -9,12 +9,7 @@ namespace Betgo.Models
 {
     public class Event
     {
-        //public Event()
-        //{
-        //    //AWinsReturn = CompetitorB.Odds / CompetitorA.Odds + 1;
-        //    AWinsReturn = OddsB / OddsA + 1;
-        //}
-
+        
         public int Id { get; set; }
         [Required]
         [StringLength(128)]
@@ -37,7 +32,8 @@ namespace Betgo.Models
         public double BWinsReturn { get; set; }
         public EventType Type { get; set; }
 
-        public string Details { get; set; }
+        public string Body { get; set; }
+        public string ImageLink { get; set; }
         public bool PaidOut { get; set; }
         public bool Winner { get; set; }
     }

@@ -20,6 +20,8 @@ namespace Betgo.ViewModels
         public int CompB { get; set; }
         [Required]
         public int Type { get; set; }
+
+        public string ImageLink { get; set; }
         public IEnumerable<EventType> Types { get; set; }
         public IEnumerable<Competitor> Competitors { get; set; }
     }

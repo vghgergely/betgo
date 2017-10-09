@@ -14,5 +14,6 @@ namespace Betgo.Models
         public EventType Type { get; set; }
 
         public string Details { get; set; }
+        public string ImageLink { get; set; }
     }
 }

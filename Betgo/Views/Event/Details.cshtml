@@ -1,7 +1,7 @@
 ﻿@model Betgo.ViewModels.DetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = @Model.Name + "- Details";
 }
 
 <h2>Details</h2>
@@ -85,28 +85,49 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Details)
+            @Html.DisplayNameFor(model => model.Body)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Details)
+            @Html.DisplayFor(model => model.Body)
         </dd>
+        
+        @if (Model.CurrEvent.PaidOut && Model.CurrEvent.Winner)
+        {
+            <dt>
+                @Html.DisplayName("Winner")
+            </dt>
 
+            <dd>
+                @Html.ActionLink(@Model.CompetitorB.Name, "Details", "Competitor", new { compId = Model.CompetitorB.Id, eventId = Model.CurrEvent.Id }, null)
+            </dd>
+        }
+        
+        else if (Model.CurrEvent.PaidOut && !Model.CurrEvent.Winner)
+        {
+            <dt>
+                @Html.DisplayName("Winner")
+            </dt>
 
+            <dd>
+                @Html.ActionLink(@Model.CompetitorA.Name, "Details", "Competitor", new { compId = Model.CompetitorA.Id, eventId = Model.CurrEvent.Id }, null)
+            </dd>
+        }
     </dl>
 </div>
+<hr/>
 @if (User.IsInRole("Administrator"))
 {
     @Html.ActionLink("Delete event","Delete","Event",new {eventId = Model.CurrEvent.Id},null)
 }
 
 <p>
-    @if (User.IsInRole("Administrator"))
+    @if (Request.IsAuthenticated)
     {
         @Html.Partial("_BetPartial", @Model.betViewModel)
         <br/>
         <br/>
-        if (Model.CurrEvent.PaidOut == false)
+        if (User.IsInRole("Administrator") && Model.CurrEvent.PaidOut == false)
         {
             using (Html.BeginForm("AddWinner", "Event", new {eventId = Model.CurrEvent.Id}, FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
             {
@@ -129,7 +150,14 @@
             }
         }
     }
-    
-
+    else
+    {
+        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+        @: or 
+        @Html.ActionLink("Log in", "Login", "Account", null, htmlAttributes: new { id = "loginLink" })
+        @: to place a bet!
+    }
+    <br />
+    <br/>
     @Html.ActionLink("Back to List", "Index", "Home")
 </p>

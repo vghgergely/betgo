@@ -1,33 +1,70 @@
-﻿@model IEnumerable<Betgo.Models.Event>
+﻿@using System.Globalization
+@model IEnumerable<Betgo.Models.Event>
 
 @{
     ViewBag.Title = "Home Page";
 }
+<h2>Upcoming events</h2>
+<div class="searchBar">
+    <form class="navbar-form navbar-left searchForm" method="get">
+        <div class="form-group">
+            <input type="search" name="searchTerm" class="form-control searchControl" placeholder="Search by event name">
+        </div>
+        <input type="submit" class="btn btn-default searchBtn" value="Search" />
+    </form>
 
-<form class="navbar-form navbar-left" method="get">
-    <div class="form-group">
-        <input type="search" name="searchTerm" class="form-control" placeholder="Search">
-    </div>
-    <input type="submit" class="btn btn-default" value="Submit"/>
-</form>
-<br/>
-<hr/>
-<ul class="list-group">
+</div>
+
+
+<ul class="events">
     @foreach (var events in Model)
     {
-        <li class="list-group-item">
-           
-            <div class="eventName">@events.Name</div>
-            <div class="competitor">@events.CompetitorA.Name</div>
-            <div class="competitor">@events.CompetitorB.Name</div>
-            <div class="date">@events.Date</div>
-            <div class="time">@events.Time</div>
-            <div class="type">@events.Type.Name</div>
+        var dWidth = @events.OddsA / (events.OddsA + events.OddsB) * 100;
+        int iWidth = (int)dWidth;
 
-            @Html.ActionLink("Details", "Details", "Event", new {eventId = events.Id}, null)
+        <li>
+
+
+            <div class="eventCont">
+                <span class="competitors">@events.CompetitorA.Name - @events.CompetitorB.Name</span>
+                <span class="name">@events.Name</span>
+                <span class="date">@events.Date.ToString(CultureInfo.CurrentCulture) - @events.Time.ToString(CultureInfo.CurrentCulture)</span>
+                <span class="type">@events.Type.Name</span>
+                <br/>
+            </div>
+
+            @*<span class="eDetails">@events.Body</span>*@
+            <div class="details">
+                <span>Miusov, as a man man of breeding and deilcacy, cof havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself. "Teh monks were not to blame, in any case," he reflceted, on the steps. "And if they're decent people here (and</span>
+            </div>
+            <div class="detailsLink">
+                <span>@Html.ActionLink("Place a bet", "Details", "Event", new { eventId = events.Id }, null)</span>
+            </div>
+            <hr class="itemBreak" />
+
+            <div class="image">
+                    <img src=@events.ImageLink alt="Event image" style="width: auto; height: auto; max-width: 300px; max-height: 400px">
+            </div>
+
+   
+                <div class="progressBar">
+                    <div class="progress-bar firstBar" role="progressbar" aria-valuenow="@iWidth"
+                         aria-valuemin="0" aria-valuemax="100" style="width: @(dWidth)%">
+                        @(iWidth)%
+                    </div>
+                    <div class="progress-bar progress-bar-warning progress-bar-striped secondBar" style="width: @(100 - dWidth)%">
+                        @(100 - iWidth)%
+                    </div>
+                    <div>
+                        <span class="barText" style="float: left; margin-bottom: 10px"><strong>@(events.CompetitorA.Name)</strong> - x@(events.AWinsReturn.ToString("0.00"))</span>
+                        <span class="barText" style="float: right">x@(events.BWinsReturn.ToString("0.00")) - <strong>@(events.CompetitorB.Name)</strong></span>
+                    </div>
+                </div>  
+
+
+
             
 
-        <hr/>
         </li>
     }
 </ul>

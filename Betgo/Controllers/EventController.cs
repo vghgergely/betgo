@@ -61,7 +61,8 @@ namespace Betgo.Controllers
                 OddsB = compB.Odds,
                 Type = type,
                 AWinsReturn = compB.Odds / compA.Odds + 1,
-                BWinsReturn = compA.Odds / compB.Odds + 1
+                BWinsReturn = compA.Odds / compB.Odds + 1,
+                ImageLink = viewModel.ImageLink
 
             };
             _context.Events.Add(newevent);
