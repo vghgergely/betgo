@@ -11,7 +11,7 @@
         <div class="time">@events.Time</div>
         <div class="type">@events.Type.Name</div>
         
-        @Html.ActionLink("Details", "Details", "Event", new { eventId = events.Id},null)
+        @Html.ActionLink("Body", "Details", "Event", new { eventId = events.Id},null)
         @*@if (User.IsInRole("Administrator"))
         {
             @Html.ActionLink("Delete event","Delete","Event", new {eventId = events.Id},null)

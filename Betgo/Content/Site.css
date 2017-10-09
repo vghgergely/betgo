@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 70px;
     padding-bottom: 20px;
 }
 
@@ -21,4 +21,137 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+/*Page specific*/
+
+/*Layout*/
+.footerBreak {
+    position: relative;
+    top: 40px;
+}
+
+.footer {
+    position: relative;
+    top: 25px;
+}
+/*events*/
+.events {
+    padding: 0 0;
+}
+
+.searchBar {
+    position: relative;
+    width: 500px;
+    
+}
+.searchControl {
+    width: 300px;
+}
+.searchBtn {
+    display: inline;
+}
+.searchBar > .searchForm {
+    position: absolute;
+    width: 700px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.events > li {
+    position: relative;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    height: 340px;
+    top: 70px;
+}
+
+.events > li .eventCont {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    padding-bottom: 100px;
+    width: 570px;
+}
+
+.events > li .details {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 500px;
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    float: left;
+    max-width: 100%;
+    height: 100px; 
+    margin: 0 auto;
+    font-size: 14px;
+    margin-bottom: 20px;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: justify;
+}
+
+.events > li > .detailsLink {
+    position: absolute;
+    top: 305px;
+    right: 0;
+    font-size: 24px;
+    
+}
+
+.events > li > .itemBreak {
+    position: absolute;
+    bottom: 325px;
+    left: 0;
+    width: 100%;
+}
+
+.events > li .image {
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    float: right;
+    max-width: 570px;
+    max-height: 200px;
+    object-fit: scale-down;
+    
+}
+
+.events > li .progressBar {
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    width: 570px;
+}
+
+.events > li .progressBar > .firstBar {
+    min-width: 1.5em;
+    display: inline;
+}
+
+.events > li .progressBar > .secondBar {
+    min-width: 1.5em;
+    display: inline;
+}
+
+
+.events > li .competitors {
+    display: block;
+    font-weight: bold;
+    font-size: 24px;
+}.events > li .name {
+    display: block;
+     font-size: 18px;
+}.events > li .date {
+    display: block;
+     font-style: italic;
+     font-size: 18px;
+}.events > li .type {
+    display: block;
+     font-size: 16px;
+    
 }
