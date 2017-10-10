@@ -50,6 +50,7 @@ namespace Betgo.Controllers
             return RedirectToAction("Index","Home");
         }
 
+        [HttpGet]
         public ActionResult Details(int compId, int eventId)
         {
             var comp = _context.Competitors.Single(c => c.Id == compId);

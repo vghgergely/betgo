@@ -25,13 +25,14 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr class="footerBreak"/>
-        <footer class ="footer">
-            <p>&copy; @DateTime.Now.Year - Gergely Virágh</p>
-        </footer>
-    </div>
+<div class="container body-content">
+    @RenderBody()
+        
+</div>
+<hr class="footerBreak"/>
+<footer class="footer">
+    <p>&copy; @DateTime.Now.Year - Gergely Virágh</p>
+</footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

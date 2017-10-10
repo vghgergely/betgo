@@ -1,12 +1,14 @@
 ﻿body {
     padding-top: 70px;
     padding-bottom: 20px;
+    position: relative;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    padding-bottom: 45px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -27,17 +29,23 @@ textarea {
 
 /*Layout*/
 .footerBreak {
-    position: relative;
-    top: 40px;
+   
+ 
 }
 
 .footer {
-    position: relative;
-    top: 25px;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    
 }
 /*events*/
 .events {
     padding: 0 0;
+    position: relative;
+    top: 0;
 }
 
 .searchBar {

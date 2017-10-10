@@ -4,10 +4,8 @@
     ViewBag.Title = @Model.Competitor.Name + "- Details";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>@Model.Competitor.Name</h4>
+    <h2>@Model.Competitor.Name</h2>
     <hr />
     <dl class="dl-horizontal">
 
@@ -21,13 +19,9 @@
 
     </dl>
 </div>
-
-<div>
-    <h4>Past events</h4>
-    <hr/>
+ Past Events
     @Html.Partial("_EventsPartial",Model.Events)
-</div>
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-    @Html.ActionLink("Back to List", "Details","Event",new {eventId = Model.EventId},null)
+    @*@Html.ActionLink("Back to List", "Details","Event",new {eventId = Model.EventId},null)*@
 </p>
