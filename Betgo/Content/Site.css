@@ -41,7 +41,7 @@ textarea {
     text-align: center;
     
 }
-/*events*/
+/*EVENTS START*/
 
 .events {
     padding: 0 0;
@@ -50,9 +50,8 @@ textarea {
 .events > li {
     position: relative;
     margin-bottom: 10px;
-    /*display: block;*/
     width: 100%;
-    height: 400px;
+    height: 460px;
     top: 70px;
 }
 
@@ -66,7 +65,7 @@ textarea {
 
 .events > li .eventDetails {
     position: absolute;
-    bottom: 30px;
+    bottom: 90px;
     left: 0;
     width: 500px;
     display: block; /* Fallback for non-webkit */
@@ -89,6 +88,7 @@ textarea {
     bottom: 0;
     left: 0;
     font-size: 24px;
+    width: 100%;
     
 }
 
@@ -98,11 +98,14 @@ textarea {
 }
 
 .events > li .betContent {
-    background-color: green;
+    background-color: gray;
     margin: 0;
     max-height: 0;
     overflow: hidden;
     transition: max-height 1s;
+    width: 100%;
+    
+    padding-left: 17px;
 }
 
 .events > li .eventActions.open .betContent {
@@ -111,7 +114,7 @@ textarea {
 
 .events > li > .itemBreak {
     position: absolute;
-    bottom: 385px;
+    bottom: 445px;
     left: 0;
     width: 100%;
 }
@@ -129,7 +132,7 @@ textarea {
 
 .events > li .progressBar {
     position: absolute;
-    bottom: 60px;
+    bottom: 120px;
     right: 0;
     width: 570px;
 }
@@ -160,4 +163,52 @@ textarea {
     display: block;
      font-size: 16px;
     
+}
+
+ /* EVENTS END*/
+
+ /* BETPARTIAL START*/
+
+ .betContainer {
+     display: inline;
+ }
+
+ .betContainer > ul {
+     float: left;
+     margin-top: 11px;
+     margin-right: 100px;
+     display: inline-block;
+     padding: 0 0;
+     width: 500px;
+ }
+
+.betAmountForm {
+    margin-top: 11px;
+    float: left;
+    display: inline-block;
+    margin: 0 0;
+}
+
+.betAmountText {
+    float: left;
+    display: inline-block;
+    margin-top: 11px;
+    margin-right: 20px;
+}
+
+.betTextBox {
+    margin-top: 11px;
+    float: left;
+    display: inline-block;
+    
+}
+
+.betButton {
+    margin: 0 0;
+    margin-top: 15px;
+    padding: 0 0;
+    float: left;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-top: 9px;
 }
