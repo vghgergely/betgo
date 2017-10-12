@@ -1,12 +1,14 @@
 ﻿body {
     padding-top: 70px;
     padding-bottom: 20px;
+    position: relative;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    padding-bottom: 45px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -27,43 +29,29 @@ textarea {
 
 /*Layout*/
 .footerBreak {
-    position: relative;
-    top: 40px;
+   
+ 
 }
 
 .footer {
-    position: relative;
-    top: 25px;
-}
-/*events*/
-.events {
-    padding: 0 0;
-}
-
-.searchBar {
-    position: relative;
-    width: 500px;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    text-align: center;
     
 }
-.searchControl {
-    width: 300px;
-}
-.searchBtn {
-    display: inline;
-}
-.searchBar > .searchForm {
-    position: absolute;
-    width: 700px;
-    padding-left: 0;
-    padding-right: 0;
-}
+/*EVENTS START*/
 
+.events {
+    padding: 0 0;
+    list-style: none;
+}
 .events > li {
     position: relative;
     margin-bottom: 10px;
-    display: block;
     width: 100%;
-    height: 340px;
+    height: 460px;
     top: 70px;
 }
 
@@ -75,9 +63,9 @@ textarea {
     width: 570px;
 }
 
-.events > li .details {
+.events > li .eventDetails {
     position: absolute;
-    bottom: 0px;
+    bottom: 90px;
     left: 0;
     width: 500px;
     display: block; /* Fallback for non-webkit */
@@ -95,22 +83,43 @@ textarea {
     text-align: justify;
 }
 
-.events > li > .detailsLink {
+.events > li .eventActions {
     position: absolute;
-    top: 305px;
-    right: 0;
+    bottom: 0;
+    left: 0;
     font-size: 24px;
+    width: 100%;
     
+}
+
+.events > li .toggleBet {
+    display: inline-block;
+    
+}
+
+.events > li .betContent {
+    background-color: gray;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s;
+    width: 100%;
+    
+    padding-left: 17px;
+}
+
+.events > li .eventActions.open .betContent {
+    max-height: 300px;
 }
 
 .events > li > .itemBreak {
     position: absolute;
-    bottom: 325px;
+    bottom: 445px;
     left: 0;
     width: 100%;
 }
 
-.events > li .image {
+.events > li .eventImage {
     position: absolute;
     top: 20px;
     right: 0px;
@@ -123,7 +132,7 @@ textarea {
 
 .events > li .progressBar {
     position: absolute;
-    bottom: 30px;
+    bottom: 120px;
     right: 0;
     width: 570px;
 }
@@ -154,4 +163,52 @@ textarea {
     display: block;
      font-size: 16px;
     
+}
+
+ /* EVENTS END*/
+
+ /* BETPARTIAL START*/
+
+ .betContainer {
+     display: inline;
+ }
+
+ .betContainer > ul {
+     float: left;
+     margin-top: 11px;
+     margin-right: 100px;
+     display: inline-block;
+     padding: 0 0;
+     width: 500px;
+ }
+
+.betAmountForm {
+    margin-top: 11px;
+    float: left;
+    display: inline-block;
+    margin: 0 0;
+}
+
+.betAmountText {
+    float: left;
+    display: inline-block;
+    margin-top: 11px;
+    margin-right: 20px;
+}
+
+.betTextBox {
+    margin-top: 11px;
+    float: left;
+    display: inline-block;
+    
+}
+
+.betButton {
+    margin: 0 0;
+    margin-top: 15px;
+    padding: 0 0;
+    float: left;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-top: 9px;
 }
