@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using Betgo.ViewModels
 @model IEnumerable<Betgo.Models.Event>
 
 <ul class="events">
@@ -19,15 +20,19 @@
             </div>
 
             @*<span class="eDetails">@events.Body</span>*@
-            <div class="details">
+            <div class="eventDetails">
                 <span>Miusov, as a man man of breeding and deilcacy, cof havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself. "Teh monks were not to blame, in any case," he reflceted, on the steps. "And if they're decent people here (and</span>
             </div>
-            <div class="detailsLink">
-                <span>@Html.ActionLink("Place a bet", "Details", "Event", new { eventId = events.Id }, null)</span>
+            <div class="eventActions">
+
+                <button class="toggleBet">Place bet</button>
+                @Html.ActionLink("Event details", "Details", "Event", new { eventId = events.Id }, null)
+                <div class="betContent">@Html.Partial("_BetPartial", new BetViewModel(events))</div>
+                
             </div>
             <hr class="itemBreak" />
 
-            <div class="image">
+            <div class="eventImage">
                 <img src=@events.ImageLink alt="Event image" style="width: auto; height: auto; max-width: 300px; max-height: 400px">
             </div>
 
@@ -46,7 +51,9 @@
                 </div>
             </div>
 
+            @*<div class="betPlacer">
 
+                </div>*@
 
 
 
