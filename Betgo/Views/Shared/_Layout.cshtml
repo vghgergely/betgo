@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BetGo</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("scripts", required: false)
 
 </head>
 <body>
@@ -33,8 +38,6 @@
 <footer class="footer">
     <p>&copy; @DateTime.Now.Year - Gergely Virágh</p>
 </footer>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    
 </body>
 </html>

@@ -115,6 +115,7 @@
         }
     </dl>
 </div>
+<div id="map"></div>
 <hr/>
 @if (User.IsInRole("Administrator"))
 {
@@ -161,3 +162,21 @@
     <br/>
     @Html.ActionLink("Back to List", "Index", "Home")
 </p>
+
+<script>
+    function initMap() {
+        var uluru = { lat: @Model.Lat, lng: @Model.Long };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA09HtxMyLXyARlycNpb9T76Sl7oEAmQo&callback=initMap">
+</script>
+

@@ -5,6 +5,9 @@ using System.Web.Mvc;
 using Betgo.Models;
 using Betgo.ViewModels;
 using System.Data.Entity;
+using Google.Maps;
+using Google.Maps.Geocoding;
+using Google.Maps.Places;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 
@@ -42,9 +45,17 @@ namespace Betgo.Controllers
                 viewModel.Types = _context.EventTypes.ToList();
                 return View("Create", viewModel);
             }
-            
-            Random rnd = new Random();
-            double randomOne = rnd.NextDouble();
+
+            var request = new GeocodingRequest {Address = viewModel.Address, Sensor = false};
+            var response = new GeocodingService().GetResponse(request);
+            var result = response.Results.First();
+            var address = result.FormattedAddress;
+            var lon = result.Geometry.Location.Longitude;
+            var lat = result.Geometry.Location.Latitude;
+            //var placeRequest = new NearbySearchRequest {Radius = 100 ,Location = new LatLng(geoResult.Geometry.Location.Latitude, geoResult.Geometry.Location.Longitude), Sensor = false};
+            //var placeResponse = new PlacesService().GetResponse(placeRequest);
+            //var address = placeResponse.Results.First().FormattedAddress;
+
             var dt = DateTime.Parse(viewModel.DateTime);
             var type = _context.EventTypes.Single(t => t.Id == viewModel.Type);
             var compA = _context.Competitors.Single(c => c.Id == viewModel.CompA);
@@ -62,8 +73,10 @@ namespace Betgo.Controllers
                 Type = type,
                 AWinsReturn = compB.Odds / compA.Odds + 1,
                 BWinsReturn = compA.Odds / compB.Odds + 1,
-                ImageLink = viewModel.ImageLink
-
+                ImageLink = viewModel.ImageLink,
+                Address = address,
+                Long = lon,
+                Lat = lat
             };
             _context.Events.Add(newevent);
             _context.SaveChanges();
