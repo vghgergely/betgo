@@ -92,6 +92,14 @@
             @Html.DisplayFor(model => model.Body)
         </dd>
         
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        
         @if (Model.CurrEvent.PaidOut && Model.CurrEvent.Winner)
         {
             <dt>
