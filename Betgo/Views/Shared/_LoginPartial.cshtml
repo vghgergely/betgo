@@ -1,18 +1,34 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using Betgo.Models.Extensions;
+@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("About", "About", "Home")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <li class="dropdown">
+
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.Name<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("My Bets", "MyBets", "Bet")
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li role="separator" class="divider"></li>
+                        <li>@Html.ActionLink("Add Event", "Create", "Event")</li>
+                        <li>@Html.ActionLink("Add Competitor", "Create", "Competitor")</li>
+                        <li>@Html.ActionLink("Complete events", "CompleteEvents", "Event")</li>
+                    }
+                    <li role="separator" class="divider"></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>
+                </ul>
+            </li>
+        </ul>
     }
 }
+
 else
 {
     <ul class="nav navbar-nav navbar-right">

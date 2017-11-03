@@ -10,7 +10,7 @@ namespace Betgo.Models
         {
             DateTime dateTime;
             var isValid = DateTime.TryParseExact(Convert.ToString(value),
-                "yyyy MM dd HH:mm",
+                "MM/dd/yyyy HH:mm",
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.None,
                 out dateTime);

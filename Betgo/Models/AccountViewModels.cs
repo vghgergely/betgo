@@ -65,7 +65,10 @@ namespace Betgo.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
+        [StringLength(100)]
+        public string Name { get; set; }
+
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -75,8 +78,8 @@ namespace Betgo.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
+        [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }

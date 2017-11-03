@@ -1,0 +1,62 @@
+﻿@using System.Globalization
+@using Betgo.ViewModels
+@model IEnumerable<Betgo.Models.Event>
+
+<ul class="events">
+    @foreach (var events in Model)
+    {
+        var dWidth = @events.OddsA / (events.OddsA + events.OddsB) * 100;
+        int iWidth = (int)dWidth;
+
+        <li>
+
+
+            <div class="eventCont">
+                <span class="competitors">@events.CompetitorA.Name - @events.CompetitorB.Name</span>
+                <span class="name">@events.Name</span>
+                <span class="date">@events.Date.ToString(CultureInfo.CurrentCulture) - @events.Time.ToString(CultureInfo.CurrentCulture)</span>
+                <span class="type">@events.Type.Name</span>
+                <br />
+            </div>
+
+            @*<span class="eDetails">@events.Body</span>*@
+            <div class="eventDetails">
+                <span>Miusov, as a man man of breeding and deilcacy, cof havin lost his temper. He felt that he ought to have disdaimed that despicable wretch, Fyodor Pavlovitch, too much to have been upset by him in Father Zossima's cell, and so to have forgotten himself. "Teh monks were not to blame, in any case," he reflceted, on the steps. "And if they're decent people here (and</span>
+            </div>
+            <div class="eventActions">
+
+                <div style="display: inline-block"><a class="toggleBet">Place bet</a></div>
+                @Html.ActionLink("Event details", "Details", "Event", new { eventId = events.Id }, null)
+                <div class="betContent">@Html.Partial("_BetPartial", new BetViewModel(events))</div>
+                
+            </div>
+            <hr class="itemBreak" />
+
+            <div class="eventImage">
+                <img src=@events.ImageLink alt="Event image" style="width: auto; height: auto; max-width: 300px; max-height: 400px">
+            </div>
+
+
+            <div class="progressBar">
+                <div class="progress-bar firstBar" role="progressbar" aria-valuenow="@iWidth"
+                     aria-valuemin="0" aria-valuemax="100" style="width: @(dWidth)%">
+                    @(iWidth)%
+                </div>
+                <div class="progress-bar progress-bar-warning progress-bar-striped secondBar" style="width: @(100 - dWidth)%">
+                    @(100 - iWidth)%
+                </div>
+                <div>
+                    <span class="barText" style="float: left; margin-bottom: 10px"><strong>@(events.CompetitorA.Name)</strong> - x@(events.AWinsReturn.ToString("0.00"))</span>
+                    <span class="barText" style="float: right">x@(events.BWinsReturn.ToString("0.00")) - <strong>@(events.CompetitorB.Name)</strong></span>
+                </div>
+            </div>
+
+            @*<div class="betPlacer">
+
+                </div>*@
+
+
+
+        </li>
+    }
+</ul>

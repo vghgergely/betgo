@@ -1,0 +1,190 @@
+﻿@model Betgo.ViewModels.DetailsViewModel
+
+@{
+    ViewBag.Title = @Model.Name + "- Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Event</h4>
+    <hr />
+
+    <dl class="dl-horizontal">
+        @*<h4>@ViewBag.Message</h4>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompetitorA.Name)
+        </dt>
+
+        <dd>
+            @Html.ActionLink(@Model.CompetitorA.Name,"Details","Competitor",new {compId = Model.CompetitorA.Id, eventId = Model.CurrEvent.Id},null)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OddsA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OddsA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompetitorB.Name)
+        </dt>
+
+        <dd>
+            @Html.ActionLink(@Model.CompetitorB.Name, "Details", "Competitor", new { compId = Model.CompetitorB.Id, eventId = Model.CurrEvent.Id }, null)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OddsB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OddsB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AWinsReturn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AWinsReturn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BWinsReturn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BWinsReturn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        
+        @if (Model.CurrEvent.PaidOut && Model.CurrEvent.Winner)
+        {
+            <dt>
+                @Html.DisplayName("Winner")
+            </dt>
+
+            <dd>
+                @Html.ActionLink(@Model.CompetitorB.Name, "Details", "Competitor", new { compId = Model.CompetitorB.Id, eventId = Model.CurrEvent.Id }, null)
+            </dd>
+        }
+        
+        else if (Model.CurrEvent.PaidOut && !Model.CurrEvent.Winner)
+        {
+            <dt>
+                @Html.DisplayName("Winner")
+            </dt>
+
+            <dd>
+                @Html.ActionLink(@Model.CompetitorA.Name, "Details", "Competitor", new { compId = Model.CompetitorA.Id, eventId = Model.CurrEvent.Id }, null)
+            </dd>
+        }
+    </dl>
+</div>
+<div id="map"></div>
+<hr/>
+@if (User.IsInRole("Administrator"))
+{
+    @Html.ActionLink("Delete event","Delete","Event",new {eventId = Model.CurrEvent.Id},null)
+}
+
+<p>
+    @if (Request.IsAuthenticated)
+    {
+        @Html.Partial("_BetPartial", @Model.betViewModel)
+        <br/>
+        <br/>
+        if (User.IsInRole("Administrator") && Model.CurrEvent.PaidOut == false)
+        {
+            using (Html.BeginForm("AddWinner", "Event", new {eventId = Model.CurrEvent.Id}, FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+            {
+
+                <div class="container">
+
+                    <h2>The winner:</h2>
+
+                    <ul>
+                        @Html.RadioButtonFor(model => model.Winner, Model.Winner) @Model.CurrEvent.CompetitorA.Name
+                        @Html.RadioButtonFor(model => model.Winner, !Model.Winner) @Model.CurrEvent.CompetitorB.Name
+
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-default" value="Add winner"/>
+                    </div>
+                </div>
+            }
+        }
+    }
+    else
+    {
+        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+        @: or 
+        @Html.ActionLink("Log in", "Login", "Account", null, htmlAttributes: new { id = "loginLink" })
+        @: to place a bet!
+    }
+    <br />
+    <br/>
+    @Html.ActionLink("Back to List", "Index", "Home")
+</p>
+
+<script>
+    function initMap() {
+        var uluru = { lat: @Model.Lat, lng: @Model.Long };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA09HtxMyLXyARlycNpb9T76Sl7oEAmQo&callback=initMap">
+</script>
+

@@ -1,0 +1,27 @@
+﻿@model Betgo.ViewModels.CompetitorDetailsViewModel
+
+@{
+    ViewBag.Title = @Model.Competitor.Name + "- Details";
+}
+
+<div>
+    <h2>@Model.Competitor.Name</h2>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Competitor.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Competitor.Details)
+        </dd>
+
+    </dl>
+</div>
+ Past Events
+    @Html.Partial("_EventsPartial",Model.Events)
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @*@Html.ActionLink("Back to List", "Details","Event",new {eventId = Model.EventId},null)*@
+</p>

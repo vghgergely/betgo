@@ -1,0 +1,27 @@
+﻿@model Betgo.ViewModels.BetViewModel
+
+@using (Html.BeginForm("Create", "Bet", new { eventId = Model.EventId }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    
+
+    <div class="betContainer">
+
+        <ul>
+            @Model.CompetitorA.Name @Html.RadioButtonFor(model => model.ChosenOption, Model.ChosenOption) 
+            @Html.RadioButtonFor(model => model.ChosenOption, !Model.ChosenOption) @Model.CompetitorB.Name
+
+        </ul>
+    </div>
+    <div class="form-group betAmountForm">
+        <div class="betAmountText">Amount: </div>
+        <div class="betTextBox">
+            @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group betButton">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Place bet <span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+            
+        </div>
+    </div>
+}

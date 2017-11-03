@@ -4,17 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Razor;
+using Google.Maps;
 
 namespace Betgo.Models
 {
     public class Event
     {
-        //public Event()
-        //{
-        //    //AWinsReturn = CompetitorB.Odds / CompetitorA.Odds + 1;
-        //    AWinsReturn = OddsB / OddsA + 1;
-        //}
-
+        
         public int Id { get; set; }
         [Required]
         [StringLength(128)]
@@ -24,16 +20,25 @@ namespace Betgo.Models
         public DateTime ActualDateTime { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
-        [Required]
-        public string CompetitorA { get; set; }
-        [Required]
-        public string CompetitorB { get; set; }
-        [Range(0,1)]
+        //[Required]
+        public Competitor CompetitorA { get; set; }
+        //[Required]
+        public Competitor CompetitorB { get; set; }
+        
         public double OddsA { get; set; }
-        [Range(0,1)]
+        
         public double OddsB { get; set; }
 
         public double AWinsReturn { get;  set; }
+        public double BWinsReturn { get; set; }
         public EventType Type { get; set; }
+
+        public string Body { get; set; }
+        public string ImageLink { get; set; }
+        public bool PaidOut { get; set; }
+        public bool Winner { get; set; }
+        public string Address { get; set; }
+        public double Lat { get; set; }
+        public double Long { get; set; }
     }
 }
