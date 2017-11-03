@@ -4,7 +4,9 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
+<head>
+    <link href="~/Content/polaris/polaris.css" rel="stylesheet">
+</head>
 <h2>Upcoming events</h2>
 <div class="searchBar" id="searchBar">
     <form class="navbar-form navbar-left searchForm" method="get">
@@ -21,5 +23,6 @@
 @Html.Partial("_EventsPartial")
 
 @section scripts {
-    @Scripts.Render("~/Scripts/events.js")    
+    @Scripts.Render("~/Scripts/IndexScripts.js")
+    @Scripts.Render("~/Scripts/icheck.js")
 }

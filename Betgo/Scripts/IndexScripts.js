@@ -1,13 +1,7 @@
-﻿$(document).ready(function() {
+﻿$(document).ready(function () {
 
-    
-    var toggleImage = $(".toggleImage");
-    toggleImage.on("click", function () {
-        console.log("clicked");
-        $(this).next(".eventImage").toggle(500);
-        //if (toggleImage.text() === "Show") toggleImage.text("Hide");
-        //else toggleImage.text("Show");
-    });
+
+
 
     //var searchBar = $("#searchBar");
     //var toggleSearch = $("#toggleSearch");
@@ -22,7 +16,16 @@
     //    $(this).nextAll(".betContent:first").slideToggle("slow");
     //});
 
-    $(".toggleBet").on("click",function(e) {
-        $(this.parentNode).toggleClass("open");
+
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_polaris',
+        radioClass: 'iradio_polaris',
+        
+    });
+
+
+
+    $(".toggleBet").on("click", function (e) {
+        $(this.parentNode.parentNode).toggleClass("open");
     });
 });

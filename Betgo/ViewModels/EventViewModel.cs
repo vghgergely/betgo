@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Betgo.Models;
+using Google.Maps;
 
 namespace Betgo.ViewModels
 {
@@ -24,5 +25,6 @@ namespace Betgo.ViewModels
         public string ImageLink { get; set; }
         public IEnumerable<EventType> Types { get; set; }
         public IEnumerable<Competitor> Competitors { get; set; }
+        public string Address { get; set; }
     }
 }

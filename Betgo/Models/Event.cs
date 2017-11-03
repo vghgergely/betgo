@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Razor;
+using Google.Maps;
 
 namespace Betgo.Models
 {
@@ -36,5 +37,8 @@ namespace Betgo.Models
         public string ImageLink { get; set; }
         public bool PaidOut { get; set; }
         public bool Winner { get; set; }
+        public string Address { get; set; }
+        public double Lat { get; set; }
+        public double Long { get; set; }
     }
 }

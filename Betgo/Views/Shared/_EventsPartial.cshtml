@@ -25,7 +25,7 @@
             </div>
             <div class="eventActions">
 
-                <button class="toggleBet">Place bet</button>
+                <div style="display: inline-block"><a class="toggleBet">Place bet</a></div>
                 @Html.ActionLink("Event details", "Details", "Event", new { eventId = events.Id }, null)
                 <div class="betContent">@Html.Partial("_BetPartial", new BetViewModel(events))</div>
                 

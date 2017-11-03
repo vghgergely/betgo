@@ -1,6 +1,7 @@
 ﻿using System;
 using Betgo.Models;
 using Betgo.Controllers;
+using Google.Maps;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
@@ -16,6 +17,8 @@ namespace Betgo
 
             ConfigureAuth(app);
             CreateRolesAndUsers();
+            GoogleSigned.AssignAllServices(new GoogleSigned("AIzaSyDA09HtxMyLXyARlycNpb9T76Sl7oEAmQo"));
+
         }
 
         private void CreateRolesAndUsers()
