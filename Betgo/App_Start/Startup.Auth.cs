@@ -50,13 +50,13 @@ namespace Betgo
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: "pqHLLnXNzE1itPdJQwh0izCXa",
+               consumerSecret: "V4ZBNTpThypirq2TV8mgHliMNRlvi7piN8NF2IPyKPIYfsGBju");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "445031825892419",
+               appSecret: "5c1693c48c7551876dfa9e2792c71e89");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
